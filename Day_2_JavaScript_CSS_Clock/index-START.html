@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS + CSS Clock</title>
+</head>
+<body>
+
+
+    <div class="clock">
+      <div class="clock-face">
+        <p class="nine">9</p>
+        <p class="twelve">12</p>
+        <p class="six">6</p>
+        <p class="three">3</p>
+        <div class="hand hour-hand"></div>
+        <div class="hand min-hand"></div>
+        <div class="hand second-hand"></div>
+      </div>
+    </div>
+
+
+  <style>
+
+    html{
+      background: #018DED url(https://unsplash.it/1500/1000?image=881&blur=5);
+      background-size: cover;
+      font-family: 'helvetica neue';
+      text-align: center;
+      font-size: 10px;
+    }
+
+    body{
+      margin:0;
+      font-size: 2rem;
+      display: flex;
+      flex:1;
+      min-height: 100vh;
+      align-items: center;
+    }
+
+    .clock{
+      width: 30rem;
+      height: 30rem;
+      border: 20px solid white;
+      border-radius: 50%;
+      margin: 50px auto;
+      padding: 2rem;
+      position: relative;
+      box-shadow:
+        0 0 0 4px rgba(0,0,0,0.1),
+        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 10px black,
+        0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .clock-face{
+      width: 100%;
+      height: 100%;
+      transform: translateY(-3px);
+      position: relative;
+    }
+
+    .hand{
+      width: 50%;
+      height: 6px;
+      background: black;
+      top: 50%;
+      transform: rotate(90deg);
+      position: absolute;
+      transform-origin: right;
+     
+    }
+
+    .hand.second-hand{
+      --transition: all 0.1s;
+      --transition-timing-function: ease-out;
+    }
+
+    p.nine{
+      position: absolute;
+      top:100px;
+      left:-12%;
+    }
+
+    p.twelve{
+      position: absolute;
+      top:-20%;
+      left:45%;
+    }
+
+    p.six{
+      position: absolute;
+      bottom:-21%;
+      left:45%;
+    }
+
+    p.three{
+      position: absolute;
+      top:100px;
+      right:-12%;
+    }
+
+  </style>
+
+  <script>
+
+    function changeTime(){
+      const currentDate = new Date();
+      const currentSeconds = currentDate.getSeconds();
+      const currentMinutes = currentDate.getMinutes();
+      const currentHours = currentDate.getHours();
+
+
+      //seconds hand
+      const secondsDegree = ((currentSeconds/60) * 360)+ 90;
+      const secondHand = document.querySelector('.second-hand');
+      secondHand.style.transform = `rotate(${secondsDegree}deg)`;
+
+      //minutes hand
+      const minutesDegree = ((currentMinutes/60)* 360) + 90;
+      const minuteHand = document.querySelector('.min-hand');
+      minuteHand.style.transform = `rotate(${minutesDegree}deg)`;
+
+      //hour hand
+      const hourDegree = ((currentHours/12)* 360) + 90;
+      const hourHand = document.querySelector('.hour-hand');
+      hourHand.style.transform = `rotate(${hourDegree}deg)`;
+    
+    }
+
+    //running changeTime everysecond for updating the time
+    setInterval(changeTime, 1000);
+    
+  </script>
+</body>
+</html>
