@@ -1,7 +1,5 @@
-# VanillaJavaScript_30Days_Project_Challenge
+# 30 Projects Using Vanilla JavaScript
 
-# 1 Project per Day 
-
-# 30 Days = 30 Projects using Vanilla JavaScript
+# Pure JavaScript
 
 # JavaScript30.com #WESBOS
