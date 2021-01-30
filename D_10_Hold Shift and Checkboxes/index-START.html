@@ -96,6 +96,29 @@
   </div>
 
 <script>
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+  let index1
+
+ checkboxes.forEach((item, index) => {
+
+    item.addEventListener('click', () => {
+       selectingFunc(index)
+    })
+  })
+  
+  function selectingFunc(index){
+    let findSelected = document.querySelectorAll('input[type="checkbox"]:checked')
+    if(findSelected.length === 1){
+      index1 = index
+    }
+    console.log('index1 is', index1)
+    let index2 = index - index1
+    console.log('index2 ', index2)
+    if(findSelected.length > 1){
+      
+    }
+  }
+
 </script>
 </body>
 </html>
