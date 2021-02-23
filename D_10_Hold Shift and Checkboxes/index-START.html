@@ -96,31 +96,34 @@
   </div>
 
 <script>
-  /*let checkboxes = document.querySelectorAll('input[type="checkbox"]')
-  let index1
+  //1. get all the checkboxes first
+  let checkboxes = document.querySelectorAll('input[type="checkbox"]')
+  let lastChecked;
 
- checkboxes.forEach((item, index) => {
-
-    item.addEventListener('click', () => {
-       selectingFunc(index)
-    })
-  })
-  
-  function selectingFunc(index){
-    let findSelected = document.querySelectorAll('input[type="checkbox"]:checked')
-    if(findSelected.length === 1){
-      index1 = index
+  function handleCheck(e){
+    // check if they had the shift key down
+    // And check that they are checking it
+    let inBetween = false;
+    
+    if(e.shiftKey && this.checked){
+      //go ahead and do what we please
+      // loop over every single checkbox
+      checkboxes.forEach(checkbox => {
+        if(checkbox === this || checkbox === lastChecked ){
+          inBetween = !inBetween
+        }
+        if(inBetween){
+          checkbox.checked = true
+        }
+      })  
     }
-    console.log('index1 is', index1)
-    let index2 = index - index1
-    console.log('index2 ', index2)
-    if(findSelected.length > 1){
-      
-    }
-  }*/
+    lastChecked = this;
+}
+
+  //2. when any of the checkbox is selected, we run a function through event listener
+ checkboxes.forEach((checkbox, index) => checkbox.addEventListener('click', handleCheck))
   
-
-
+  console.log(lastChecked.data)
 </script>
 </body>
 </html>
